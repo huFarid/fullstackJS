@@ -6,24 +6,34 @@ import './App.css'
 const StatisticLine = ({text, value})=>
   {
     return(
-      <p>{text} {value}</p>     
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
     )
   }
 
 const Statistics = ({goodCount, neutralCount, badCount})=>
 {
   const all  = goodCount + neutralCount + badCount
-  const average = all > 0 ? (goodCount - badCount) / all :0
-  const positive = all > 0 ? (goodCount / all) * 100 : 0
+  const average = all > 0 ? ((goodCount - badCount) / all).toFixed(2) :0
+  const positive = all > 0 ? ((goodCount / all) * 100).toFixed(2) : 0
   return(
   <>
       <h2>Statistics</h2>
-      <StatisticLine text="good" value={goodCount} />
+<table>
+  <tbody>
+     <StatisticLine text="good" value={goodCount} />
       <StatisticLine text="neutral" value={neutralCount} />
       <StatisticLine text="bad" value={badCount} />
       <StatisticLine text="all" value={all} />
       <StatisticLine text="average" value={average} />
       <StatisticLine text="positive" value={positive + " %"} />
+  </tbody>
+</table>
+
+
+   
   </>
   )
 }
