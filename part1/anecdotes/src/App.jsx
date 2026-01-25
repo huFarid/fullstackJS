@@ -7,7 +7,8 @@ const getRandomIndex = (maxLength, selected)=>
     }while (randomIndex === selected)
     return randomIndex
   }
-const App = () => {
+
+ const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -19,13 +20,16 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]   
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
   return (
     <div>
-      
-      <button onClick ={()=>setSelected(getRandomIndex(anecdotes.length))}>next anecdotes</button>
+
+      <button onClick ={()=>setSelected(getRandomIndex(anecdotes.length, selected))}>next anecdotes</button>
+      <button onClick={()=> { const newVotes = [...votes]; newVotes[selected] += 1; setVotes(newVotes) } }   >vote</button>
       <br/>
       {anecdotes[selected]}
-      
+      <br/>
+      <p> {votes[selected]}</p>
     </div>
   )
 }
