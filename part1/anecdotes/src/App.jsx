@@ -8,6 +8,19 @@ const getRandomIndex = (maxLength, selected)=>
     return randomIndex
   }
 
+  const popularAnectode = (votes, anecdotes) => {
+    const maxVotes = Math.max(...votes)
+    if (maxVotes === 0) return "No votes yet"
+    const indexOfMax = votes.indexOf(maxVotes)
+    return (
+      <p>
+        <strong >{anecdotes[indexOfMax]} </strong> has {votes[indexOfMax]} votes
+      </p>
+    )
+  }
+
+
+
  const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -24,12 +37,22 @@ const getRandomIndex = (maxLength, selected)=>
   return (
     <div>
 
-      <button onClick ={()=>setSelected(getRandomIndex(anecdotes.length, selected))}>next anecdotes</button>
-      <button onClick={()=> { const newVotes = [...votes]; newVotes[selected] += 1; setVotes(newVotes) } }   >vote</button>
+      <button className='button' onClick ={()=>setSelected(getRandomIndex(anecdotes.length, selected))}>next anecdotes</button>
+      <button className='button' onClick={()=> { const newVotes = [...votes]; newVotes[selected] += 1; setVotes(newVotes) } }   >vote</button>
       <br/>
       {anecdotes[selected]}
       <br/>
       <p> {votes[selected]}</p>
+      
+      <p>Anecdote with most votes</p>
+      <p>{popularAnectode(votes, anecdotes)}</p>
+
+
+
+
+
+
+
     </div>
   )
 }

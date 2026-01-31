@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+/* in App.css */
+.button {
+  padding: 8px 16px;
+  margin: 5px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  background-color: #eee;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #ddd;
+}
+.button:active {
+  background-color: #ccc;
+}
